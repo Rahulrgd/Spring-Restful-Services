@@ -32,11 +32,10 @@ public class UserDaoService {
         return user;
     }
 
-    public User delete(Integer id){
+    public void deleteById(Integer id){
         Predicate<? super User> predicate = user->user.getId().equals(id);
         User user = users.stream().filter(predicate).findFirst().get();
-        users.remove(user);
-        return user;
+        users.removeIf(predicate);
     }
 
 
